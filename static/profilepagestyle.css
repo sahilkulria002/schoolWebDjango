@@ -1,0 +1,256 @@
+/* body{
+    background-image: linear-gradient(rgba(219, 25, 25, 0.3),rgba(200,200,200,0.3));
+} */
+
+.section3{
+    display: flex;
+    width: 80%;
+    position: relative;
+    /* left: 50%;
+    transform: translate(-45%,0%); */
+    justify-content: space-between;
+    margin-top: 6%;
+    margin-left: 10%;
+}
+.notification h1{
+    margin: 0%;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    border: 2px solid black;
+    text-align: center;
+}
+.courses h1{
+    margin: 0%;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+}
+.courses{
+    width: 65%;
+    margin-top: 0%;
+    
+}
+.courses h1::after{
+    content: '';
+    width: 98%;
+    height: 4px;
+    background: red;
+    display: block;
+}
+.courses2{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0%);
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+}
+.coursenum{
+    margin: 1% 1%;
+    width:43%;
+    min-width: 100px;
+    padding: 0 2% 0 2%;
+    /* box-shadow: 0 0 5px rgb(38, 21, 54); */
+}
+.courses2 a:hover{
+    box-shadow: 3px 3px 5px black;
+}
+.coursenum h3{
+    margin: 3%;
+}
+.coursenum h3::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: red;
+    display: block;
+}
+.coursenum h4{
+    /* font-size: 2vw; */
+    margin: 3%;
+}
+.notification{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.notification h1{
+    background: rgb(218, 105, 105);
+    font-size: 18px;
+    margin: 0;
+}
+.notf_list{
+    margin-top: 1px;
+    border: 2px solid black;
+    /* margin: 50px 50px 50px 10px; */
+}
+
+/* for smsller devices */
+@media(max-width:1000px){
+    .coursenum h3{
+        font-size: 21px;
+    }
+    .coursenum h4 {
+        font-size: 18px;
+    }
+    .notf_list ul li{
+        font-size: 18px;
+    }
+    .notf_list ul{
+        padding: 0 5 0 22px;
+    }
+    .section3{
+        width: 92%;
+        margin-left:5%;
+        flex-direction: column;
+    }
+    .courses{
+        width: 100%;
+
+    }
+    .notification{
+        width: 90%;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%,0%);
+        margin-top: 15px;
+    }
+    
+}
+
+@media(max-width:700px){
+    .section3{
+        width: 95%;
+        margin-left:2.5%;
+        flex-direction: column;
+    }
+    .courses{
+        width: 100%;
+    }
+    .coursenum{
+        /* border: 2px solid black; */
+        margin: auto;
+        margin-top: 10px;
+        width: 90%;
+        background: rgb(237, 226, 226);
+    }
+    .coursenum h3{
+        font-size: 20px;
+    }
+    .coursenum h4 {
+        font-size: 18px;
+    }
+    
+    .notification{
+        width: 90%;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%,0%);
+        margin-top: 15px;
+    }
+    .notf_list ul{
+        padding: 0 5 0 22px;
+    }
+    .notf_list ul li{
+        font-size: 13px;
+    }
+}
+
+/* section 4 */
+.section4{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    /* background: rgb(236, 165, 165); */
+}
+.quick_links{
+    width: 30%;
+}
+.quick_links h1, .quiz_notf h1{
+    border-bottom: 3px solid rgb(241, 7, 7);
+    /* border-radius: 8px; */
+    margin : 0;
+    padding: 10px 0 10px 0;
+    /* background: rgb(218, 105, 105); */
+    font-size: 22px;
+    text-align: center;
+}
+.quick_links ul{
+    border: 1px solid black;
+    padding: 2% 8% 0 40px;
+    margin-top: 2px;
+}
+.quick_links ul li{
+    margin: 8px 0 8px 0;
+    width: 100%;
+    padding: 5px;
+}
+.quick_links ul li a{
+    text-decoration: none;
+    color: black;
+}
+.quick_links ul li:hover{
+    box-shadow: 2px 2px 4px black;
+}
+.quiz_notf{
+    width: 60%;
+    position: relative;
+    /* left: 50%;
+    transform: translate(-50%, 0%); */
+}
+.quiz_notf table,td,th{
+    margin: 0%;
+    margin-top: 2px;
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+    height: 30px;
+    padding: 3px 5px 3px 15px;
+}
+.quiz_notf table{
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, 0%);
+    width: 100%;
+}
+@media(max-width:700px){
+    .section4{
+        flex-direction: column;
+    }
+    .quiz_notf{
+        width: 100%;
+    }
+    .quick_links{
+        width: 100%;
+    }
+}
+
+/* for table section 5*/
+.details {
+    width: 85vw;
+    margin-left: 5vw;
+    margin-top: 5%;
+    margin-bottom: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+
+}
+.details td, .details th {
+    border: 1px solid rgb(54, 40, 40);
+    font-size: 14px;
+    padding: 8px;
+}
+.details tr:nth-child(even){background-color: #f2f2f2;}
+
+.details tr:hover {background-color: #ddd;}
+
+@media(max-width=700px){
+    /* .details {
+        width: 80vw;
+        margin-left: 2vh;
+    } */
+}
+.new{
+    background: red;
+}

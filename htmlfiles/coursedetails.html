@@ -1,0 +1,105 @@
+{% extends 'rango/base.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'coursedetailsstyle.css' %}">
+
+<!-- Section 3 -->
+
+<section class="section3">
+    <div class="course_heading">
+        <div class="title">
+            <h3>{{course_name}}</h3>
+            <h3>{{title}}</h3>
+        </div>
+        <div class="teacher">
+            <h4>Teacher : {{teacher}}</h4>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="details">
+        <div class="time">
+            <h3>Lecture Timing : </h3>
+            <p>{{time}}</p>
+        </div>
+        <div class="result">
+            <h3>Quizes and Assignment Marks :</h3>
+            <table>
+                <tr>
+                    <th>--</th>
+                    <th>Marks</th>
+                    <th>Remarks</th>
+                </tr>
+                <tr>
+                    <td>nth quiz</td>
+                    <td>This field is incomplete</td>
+                    <td>This filed is incomplete</td>
+                </tr>
+            </table>
+        </div>
+        <div class="assignments">
+            <h3>Assignments :</h3>
+            {% for assignment in assignments %}
+            <div class="assignment">
+                <h4>{{assignment.title}}</h4>
+                <table>
+                    <tr>
+                        <th class="ass_table_head" style="width: 250px; ">Syllabus : </th>
+                        <td>{{assignment.syllabus}}</td>
+                    </tr>
+                    <tr>
+                        <th>Total Marks : </th>
+                        <td>{{assignment.t_marks}}</td>
+                    </tr>
+                    <tr>
+                        <th>Submission Deadline : </th>
+                        <td>{{assignment.last_date}}</td>
+                    </tr>
+                    <tr>
+                        <th>Problem Statment : </th>
+                        <td>{{assignment.content}}</td>
+                    </tr>
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="assignments">
+            <h3>Quizes :</h3>
+            {% for assignment in quizes %}
+            <div class="assignment">
+                <h4>{{assignment.title}}</h4>
+                <table>
+                    <tr>
+                        <th class="ass_table_head" style="width: 220px;">Syllabus : </th>
+                        <td>{{assignment.syllabus}}</td>
+                    </tr>
+                    <tr>
+                        <th>Total Marks : </th>
+                        <td>{{assignment.t_marks}}</td>
+                    </tr>
+                    <tr>
+                        <th>Quiz Time : </th>
+                        <td>{{assignment.last_date}}</td>
+                    </tr>
+                    <tr>
+                        <th>Problem Statment : </th>
+                        <td>{{assignment.content}}</td>
+                    </tr>
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="books">
+            <h3>Reference Books :</h3>
+            <p>{{books.0}}, {{books.1}}, {{books.2}}</p>
+        </div>
+        <div class="content">
+            <h3>Course Content :</h3>
+            <p>{{content}}</p>
+        </div>
+    </div>
+</section>
+
+<!-- section 4 -->
+
+{% endblock %} 

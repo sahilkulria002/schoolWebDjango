@@ -1,0 +1,51 @@
+{% extends 'rango/base.html' %}
+{% load static %}
+
+{% block body %}
+<link rel="stylesheet" href="{% static 'inh2.css' %}">
+
+<section>
+    <div class="c_section2">
+        <div class="c_us">
+            <h2>Contact Us</h2>
+            <div class="line1">
+                <h4>Phone : </h4>
+                <p>9467738359 <br> 9467738360 <br> 7027050659</p>
+            </div>
+            <div class="line1 line2">
+                <h4>email : </h4>
+                <p>svmdhukra@gmail.com</p>
+            </div>
+            <div class="line1 line3">
+                <h4>Visit us on youtube : </h4>
+                <div>
+                    <a href="https://www.youtube.com/channel/UCza6hfKyVTyz6pkQvgg952Q"><img src="/static/images/youtube_logo2.png" alt=""></a>
+                    <a href="https://www.youtube.com/channel/UClCNjk78OUZtELgIYTKco-Q"><img src="/static/images/youtube_logo2.png" alt=""></a>
+                </div>
+            </div>
+            <div class="line1">
+                <h4>Visit Us : </h4>
+                <a href="https://goo.gl/maps/zW8Hun8R3U6rLZKNA"><img src="/static/images/maps.png" alt=""></a>
+            </div>
+        </div>
+        <div class="query">
+            <h2>How can we help you</h2>
+            <form class="query_form" action="">
+                <div>
+                <label for="q_name"> Name</label>
+                <input type="text" name="q_name" id=""><br></div>
+                <div><label for="q_email"> Email</label>
+                <input type="email" name="q_email" id=""><br></div>
+                <div><label for="q_phone">Phone</label>
+                <input type="text" name="q_phone" id=""><br></div>
+                <div><label for="q_query">Query</label>
+                <input class="q_text" type="text" name="q_query" id=""><br></div>
+                <div class="c_submit"><input class="c_sub_but" type="submit" name="" id=""></div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %} 

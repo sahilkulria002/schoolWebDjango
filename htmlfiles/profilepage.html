@@ -1,0 +1,87 @@
+{% extends 'rango/base.html' %}
+{% block student_name %}
+<h4 class="sname">{{name}}
+</h4>
+{% endblock %}
+{% block body %}
+{%load static %}
+<link rel="stylesheet" href="{% static 'profilepagestyle.css' %}">
+
+    <!-- Section 3 -->
+    <section>
+        <div class="section3">
+            <div class="courses">
+                <h1>Courses</h1>
+                <div class="courses2">
+                    {%for a,b,c in coursetitle %}
+                    <a href= "/course/{{a}}" class="coursenum" style="text-decoration: none; color:black;">
+                        <h3>{{a}} : {{b}}</h3>
+                        <h4>{{c}}</h4>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="notification">
+                <h1>Notifications</h1>
+                <div class="notf_list">
+                    <ul>
+                        {% for notf in notfs %}
+                        <li>{{notf}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- quiz and assignment details section 4 -->
+<section>
+    <div class="section4">
+        <div class="quick_links">
+            <h1>Quick links</h1>
+            <ul>
+                <li><a href="">Link1</a></li>
+                <li><a href="">Link1</a></li>
+                <li><a href="">Link1</a></li>
+                <li><a href="">Link1</a></li>
+                <li><a href="">Link1</a></li>
+            </ul>
+        </div>
+        <div class="quiz_notf">
+            <h1>Quizes and Assignments</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Date</th>
+                </tr>
+                {% for n,c,d,pending in quizes %}
+                {% if pending %}
+                <tr style="background: rgb(3, 211, 3);">
+                    <td>{{n}}</td><td>{{c}}</td><td>{{d}}</td>
+                </tr>
+                {% else %}
+                <tr >
+                    <td>{{n}}</td><td>{{c}}</td><td>{{d}}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</section>
+<h1>{{res}}</h1>
+<!--section 5 for details table  -->
+
+    <table class="details">
+        {% for a,b in details %}
+        <tr>
+            <th>{{a}}</th>
+            <td>{{b}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    
+    
+    <!-- <img src="/static/images/background1.jpg" alt="phoyo"> -->
+    {% endblock %}

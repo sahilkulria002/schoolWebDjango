@@ -1,0 +1,76 @@
+{% extends 'rango/base2.html' %}
+{% load getprofile %}
+{% block words %}
+<h1>{{info.0}}</h1>
+
+<h1 id="lis" style="display: none;">{{ls}}</h1>
+{% if but_id == "school" %} 
+<p>Dear parents and students, I extend you all a very warm welcome to Saraswati Vidya Mandir Dhukra. I hope this website will help you to get more out of the school and will assist in enhancing school`s culture furhtering school`s growth and evolution. <br><b>- Every brain is powerful. <br>- A child can think in most unexpected and creative way. We are here to let them impliment their thoughts and evolve further.</b> <br>We know how much the student`s thoughts matter and we have the potential to treat every student in unique way. And if a student like the way he is being taught, his evolution rate increases much faster. <br><br><b>Mr. Balwant Singh <br>Principal</b></p>
+
+
+{% elif but_id == "events" %} 
+<p>Studying all the time is not the best practice at all and it might led to loose interest in studies for some students. Don`t worry about it when you are an SVM student. Throughout the year, different events, functions, exhibitions, tours are organised for students which makes a student enjoy the learning. We give you the opportunity to show yourself.</p>
+<h4>Events</h4>
+<p>Various celebrations like Independence Day, Republic Day, Netaji Subhas Chandra Bose Jayanti are celebrated in our school every year along with price distribution function. Here students students perform there cultural activities like dance, drama, singing, poetery etc with great enthusiasm. All things related to a performance prepreation are provided by the school. The students with great performances througput the year in various fields like acadmics, desciplinel, games, cultural activities participation etc are rewarded with great rewards. There is no limit for you that in how many categories you put your name for awards.</p>
+<p>To participate in such functions all you have to do is to reach the events manager. You are good at something or not, you just need to full of enthusiasm. </p>
+<h4>Exhibitions</h4>
+<p>On occasions like children`s Day, Rakshabandhan etc, different kind of exhibitions are held in which students show there projects. Project ideas are based on the occasion. All the students are encouraged and best projects are given awards.</p>
+<h4>Tours</h4>
+<p>Going on school trips with your mates and teachers is an amazing experience and feeling. We arrange tours for our students almost every year or more frequent to fun places, beautiful places, historical places and more. This turns out to be one of the best part of student`s journey throughout the year.</p>
+<p>Don`t worry about missing any of these. Information about any upcoming event, exhibition, tour will be displayed in Announcements panel.</p>
+
+
+{% elif but_id == 'projects' %}
+<p>You read about something and when you see it working in real life, your curiosity about it increases exponentionally. Here are some of the projects explained made by students under guidence of their teachers.</p>
+<h1>Pressure exerted by liquid at bottom of container : : </h1>
+<p>A water pipe, a bloon, a water container etc appratuses were used in this experiment. Bloon was  attached to one side of the vertical pipe. Then water was poured in the pipe. As the water level increased, pressure at the bottom end of pipe increased and so the bloon size increased.</p>
+<p>Complete demonstration of the project can be accessed at school`s youtube channal.</p>
+
+
+{% elif but_id == "extra" %}
+<p>There is no limit for a student`s learning capacity. We provide you platforms to widen you learning area and explore things.</p>
+<h4>Student Teaching Assistants : </h4>
+<p>One of the best ways of learning things is to teach others. This not just give into your acadmic knowledge but more. This is the best way to enhance your communication skills, leadership qualities etc. You learn how to express yourself in front of others and how to takle problems in realtime.</p>
+<p>We give our students this great opportunity. In our school you can easily apply for your job as teaching assistant. You can assist a teacher in his/her lecture, you can also take a lecture completely on your own. All you need is a good knowledge of somethong and we will arrange your lecture. Generally you can become a teaching assistant for your junior classes but if you have potential, there is no upper limit for class you can be standin in as a teacher.</p>
+<p>Don`t think at all that your relation with this school is only until you pass out from here. You can always visit us as a student or as a teaching assistant or teacher.</p>
+<h4>Music club</h4>
+<p>In their own words: We are team of students which takes care of all musical things in our school like prayer, functions etc. We organise paryer( sing, adress students, play musical instruments and manage students throughout the prayer) and perform in all cultural activities. Instruments are provided ny the school.</p>
+<p>Any student in our school who has interest in music can join us. There is no pre-requisite for joining us. You can be an absolute beginner or a pro in music. We organise workshops on musical instruments for our newer team members</p>
+<h4>Contests</h4>
+<p>Various quiz and game contests are held throughout the year on class and school levels. Prices are given to winners. The topic for quiz contests may vary widely and so do the student`s knowledge.</p>
+
+{% elif but_id == "summer" %}
+<p>We offer one 25-days ofline/online mini summer course during summer holidays. These courses are not for ruining students holidays, studemts are completely free to choose between joining and not joining these courses.Courses like "English speakin course", "Science Projects", "Math crash course" etc are offered in these holidays. Courses are made interesting by direct implementation of things to real life. Practically, summer workshops  are the right remedy to boom student`s interest and knowledge.
+</p>
+
+{% elif but_id == "online-studies" %}
+<p>In the world of growing technology, we provide all the necessary things and details in online mode also. A parent or a student can check details about student`s acadmic progress <b>anywhere, anytime</b>. One can see following details about student after loggin in into his/her account in school`s website. <br>  -  Class and subjects the students is registered in. <br>  -  Details like date, syllabus etc about upcoming exams, quizes and assignments. <br>  -  Results of quizes, assignments and exams that are over till today. <br>  -  Reference books and content details for every subject. <br>  -  Can discuss his/her doubts with his mates and teachers. <br>  -  Details about upcoming events, summer cources etc. <br>We provide ofline/online one month summer course for students who wants to have fun with their books in summer. <br> (Login to see more detals )</p>
+<h4>Experience of online studies till now :</h4>
+<p>During last two years of online things, our school online classes successed upto great extent. We organised onilne class throughout the lockdown period and were able to keep the student`s connection with there studies alive and healthy. Some features of our online study: <br>  -  Live classes were held everyday. <br>  -  Material for readinds was provided. <br>  -  Online quizes and assignments were organised. <br>  -  Advanced methods like live animations etc were used to make these classes interesting.</p>
+
+{% endif %}
+
+<script>
+// var mylist = document.getElementById("lis").innerHTML;
+// images = mylist.split(',')
+// for(i = 0; i < mylist.length; i++){
+//     console.log(mylist[i])
+// };
+
+// var slideimg = document.getElementById('slideshow')
+// var leng = images.length;
+// var i = 0;
+// function slideshow() {
+//     if (i>leng-1){
+//         i = 0;
+//     }
+//     slideimg.src = images[i];
+//     i++;
+//     setTimeout('slideshow()',5000);
+// }
+
+</script>
+{% endblock %}
+{% block pagename %}
+    <input type="hidden" name="" id="but_id", value="{{but_id}}">
+{% endblock %}

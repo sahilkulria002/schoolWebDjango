@@ -1,0 +1,108 @@
+body{
+    background-size: 100%;
+    background-image: linear-gradient(rgba(23, 22, 22, 0.7),rgba(55, 51, 51, 0.7)),url('/static/images/background2.webp');
+}
+
+.logo{
+    border-radius: 10px;
+    background-image: linear-gradient(rgb(229, 219, 214),rgb(237, 193, 176));
+}
+.course_heading{
+    background-image: linear-gradient(rgb(214, 229, 217),rgb(178, 237, 176));
+}
+.header{
+    background: rgb(236, 159, 159);
+}
+/* styling for section 3 */
+
+.section3{
+    display: block;
+}
+.course_heading{
+    display: flex;
+    width: 65%;
+    padding: 10px 10px 0 10px;
+    margin: auto;
+    margin-top: 2%;
+    flex-direction: column;
+    box-shadow: 2px 2px 5px blue;
+    border-radius: 10px;
+
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid rgb(2, 80, 38);
+}
+.title h3{
+    font-size: 2.5vw;
+    
+    margin: 0;
+}
+.teacher h4{
+    font-size: 1.5vw;
+    margin-top: 1%;
+}
+.details{
+    width: 65%;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 200px;
+    min-width: 600px;
+}
+.details table,th,td{
+    border:1px solid rgb(126, 121, 121);
+    height: 30px;
+    border-collapse: collapse;
+}
+.details table{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.assignments td{
+    padding-left: 10px;
+}
+.assignment h4{
+    margin: 5px;
+    padding: 5px;
+    background: rgb(206, 201, 201);
+}
+.time h3{
+    margin: 0;
+}
+.time, .result, .assignments, .books, .content{
+    border-bottom: 2px solid rgb(109, 106, 106);
+    padding-top: 5px;
+    padding-left: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+    background-image: linear-gradient(rgb(229, 214, 214),rgb(237, 176, 176));
+}
+.time p, .books p, .content p{
+    margin: 10px 10px;
+}
+.result h3, .assignments h3, .books h3, .content h3{
+    margin: 20px 0 10px 0;
+}
+@media(max-width:700px){
+    .course_heading{
+        width: 95%;
+        min-width:550px;
+        margin: auto;
+        margin-top: 5%;
+    }
+    .title h3{
+        font-size: 25px;
+    }
+    .teacher h4{
+        font-size: 20px;
+    }
+    .header{
+        min-width: 600px;
+    }
+    .logo{
+        min-width: 600px;
+        margin-left: 20px;
+    }
+}

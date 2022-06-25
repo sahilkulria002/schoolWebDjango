@@ -1,0 +1,115 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'registerstyle.css'%}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS India</title>
+</head>
+<body>
+    <section class="header">
+        <div class="left_links">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">About Us</a></li>
+            </ul>
+        </div>
+        <div class="right_links">
+            <ul>
+                <li><a href="login">Login/SignIn</a></li>
+                <li><a href="register">Register</a></li>
+            </ul>
+        </div>
+        <div class="small_screen_header">
+            <h3 class="menu_button" onclick="show_menu()">Menu</h3>
+            {% if islogin %}
+            <a class="menu_button" href="/register"><h3>Register</h3></a>
+            {% else %}
+            <a class="menu_button" href="login"><h3>Login</h3></a>
+            {% endif %}
+        </div>
+    </section>
+    <section class="small_d_menu">
+        <div class="header_menu_links" id="header_menu">
+            <ul>
+                <h3 class="back_button" onclick="hide_menu()">Back</h3>
+                <li><a href="/">Home</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="login">Login/SignIn</a></li>
+                <li><a href="register">Register</a></li>
+            </ul>
+        </div>
+    </section>
+    <!-- New section for registration -->
+
+    {% if islogin %}
+    <h4>Please Login</h4>
+    {% else %}
+    <h4>Only SMS School students can register here</h4>
+    {% endif %}
+    <section class="section2">
+        {% if islogin %}
+        <form action="login" method="post" class="registration_form" enctype="multipart/form-data">
+        {% else %}
+        <form action="register" method="post" class="registration_form" enctype="multipart/form-data">
+        {% endif %}
+            {% csrf_token %}
+            <label for="username" >Username</label>
+            <input type="text" name="username" class="input" placeholder="eg. sahil002" id="">
+            {% if not islogin %}
+            <label for="name">Full Name</label>
+            <input type="text" name="name" placeholder="Sahil Kulria" class="input" id="">
+            <label for="class">Select your class</label>
+            <select name="grade" id="" class="input">
+                {% for i in classes %}
+                <option value={{i}}>{{i}}</option>
+                {% endfor %}
+            </select>
+            <label for="roll_no">Roll Number</label>
+            <input type="text" name="roll_no" class="input" placeholder="5" id="">
+            <label for="fname">Father Name</label>
+            <input type="text" name="fname" class="input" placeholder="Hhasdfg" id="">
+            <label for="mname">Mother Name</label>
+            <input type="text" name="mname" class="input" placeholder="Hhasdfg" id="">
+            <label for="adress">Adress</label>
+            <input type="text" name="adress" class="input" placeholder="Hhasdfg" id="">
+            <label for="photo">Photo</label>
+            <input type="file" name="photo" class="input"  accept="image/*" id="">
+            {% endif %}
+            <label for="password">Password</label>
+            <input type="password" name="password" class="input" id="">
+            {% if not islogin %}
+            <label for="password2">Re-enter password</label>
+            <input type="password" name="password2" class="input" id="">
+            {% endif %}
+            <div class="messages">
+            {% for msg in messages %}
+            <p style="color: red">{{msg}}</p>
+            {% endfor %}
+            </div>
+            <input type="submit" class="submit_button">
+        </form>
+    </section>
+
+    <!-- javascript code -->
+
+        <!-- for small screen menu -->
+
+<script>
+    var menulinks = document.getElementById('header_menu')
+
+    function hide_menu(){
+        menulinks.style.left = '-200px';
+    }
+
+    function show_menu() {
+        menulinks.style.left = '0px'
+    }
+</script>
+</body>
+</html>

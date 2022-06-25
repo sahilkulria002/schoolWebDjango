@@ -1,0 +1,40 @@
+<section>
+    <div class="slideshow">
+        <img src="/static/images/img1.jpg" alt="" id="slideshow">
+    </div>
+</section>
+
+    <!-- Next will be section 3 -->
+    <section >
+        <div class="nav_bar2">
+            <a id="school" href="/asdfschool">School</a>
+            <a id="events" href="/asdfevents">Events</a>
+            <a id="Egallary" href="/asdfEgallary">Science Projects</a>
+            <a id="acadmics" href="/asdfacadmics">Extra curricular</a>
+            <a id="admission" href="/asdfadmission">Summer</a>
+            <a id="facilities" href="/asdffacilities">Student Achievements</a>
+            <!-- <a id="resources" href="/asdfresources">{{buttons.6}}</a> -->
+        </div>
+    </section>
+
+
+<script>
+    var slideimg = document.getElementById('slideshow')
+var images = new Array(
+    "/static/images/img1.jpg",
+    "/static/images/img2.jpg",
+    "/static/images/img3.jpg",
+    "/static/images/img4.jpg",
+    "/static/images/img5.png"
+);
+var leng = images.length;
+var i = 0;
+function slideshow() {
+    if (i>leng-1){
+        i = 0;
+    }
+    slideimg.src = images[i];
+    i++;
+    setTimeout('slideshow()',2000);
+}
+</script>
