@@ -82,15 +82,15 @@ WSGI_APPLICATION = 'school.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'school',
-        'USER':'postgres',
-        'PASSWORD' : 'Suthar@123',
-        'HOST' : 'localhost'
+        'NAME': 'd3htrp1rnm7tdo',
+        'USER':'guhzglfsdzcvhc',
+        'PASSWORD' : '5a656e7125a038325e47b25295376d2a49f409fa79a6bf0239f07510571f469f',
+        'HOST' : 'ec2-54-227-248-71.compute-1.amazonaws.com'
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
