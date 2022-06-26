@@ -11,7 +11,6 @@ class profile(models.Model):
     fname = models.CharField(max_length=50, default='')
     mname = models.CharField(max_length=50, default='')
     adress = models.CharField(max_length=200, default='')
-    photo = models.ImageField(null=True, blank=True, upload_to="images/")
     
 
 class notifications(models.Model):

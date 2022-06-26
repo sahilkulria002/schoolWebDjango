@@ -463,10 +463,9 @@
         </div>
             <div class="social_logo">
                 {% if user.is_authenticated %}
-                    <img src="{{user.username|get_photo}}" >
-                {% endif %}
                 <div class="student_profile_name">
                 {% block student_name %}{% endblock %}</div>
+                {% endif %}
             </div>
     </section>
 

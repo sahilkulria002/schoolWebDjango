@@ -10,33 +10,6 @@ from json import dumps
 
 # Create your views here.
 def home(request, but_id='school') :
-    # if request.user.is_authenticated:
-    #     prfle = profile.objects.get(username=request.user.username)
-    #     if prfle.photo:
-    #         photo = prfle.photo.url
-    #     else :
-    #         photo='/static/images/empty.png'
-    #     grade = str(prfle.grade)
-    #     name = prfle.name
-    # else :
-    #     photo='/static/images/empty.png'
-    #     name = None
-    #     grade = None
-    # buttons = ['School', 'Events', 'Science Projects', 'Extra curricular', 'Summer', 'Student Achievements']
-    # q_links=['Children`s Day 2018', 'Youtube']
-    # announcements = ['announcement 1']
-    # topass = {
-    #     'hed1' : ['Home', 'contact us', 'About us'],
-    #     'hed2' : 'Thr boss',
-    #     'photo': photo,
-    #     'name' :name,
-    #     'grade' : grade,
-    #     'buttons' : buttons,
-    #     'q_links' : q_links,
-    #     'announcements' : announcements,
-    #     'but_id' : but_id
-    # }
-    # return render(request, 'home.html', topass)
     dicti = {
         'school': ['Principal`s words : ','some',["/static/images/all/img1.jpg","/static/images/all/img4.jpg","/static/images/all/img2.jpg","/static/images/all/img3.jpg","/static/images/all/img5.jpg"]],
     }    
@@ -62,7 +35,6 @@ def register(request) :
         name = request.POST['name']
         grade = request.POST['grade']
         roll_no = request.POST['roll_no']
-        photo = request.FILES['photo']
         password = request.POST['password']
         password2 = request.POST['password2']
         fname = request.POST['fname']
@@ -81,14 +53,14 @@ def register(request) :
                 return redirect(register)
             else :
                 user = User.objects.create_user(username=username, password=password)
-                userprofile = profile.objects.create(username=username,name=name,grade=grade, roll_no=roll_no, fname=fname, mname=mname, adress=adress, photo=photo)
+                userprofile = profile.objects.create(username=username,name=name,grade=grade, roll_no=roll_no, fname=fname, mname=mname, adress=adress)
                 user.save()
                 userprofile.save()
                 auth.login(request,user)
                 return redirect('/?username='+username)
 
     else :
-        classes = [1,2,3,4,5,6,7,8,9,10]
+        classes = [1,2,3,4,5,6,7,8]
         return render(request, 'register.html', {'classes':classes,'islogin' : False})
 
 def login(request) :
@@ -133,11 +105,6 @@ def profilepage(request,username) :
         if item.result :
             res.append(item.result)
     quizes_and_assignments.reverse()
-    if prfle.photo :
-        photo = prfle.photo
-        photo = photo.url
-    else :
-        photo = '/media/images/empty.png'
     details = [['Username :' ,username],[
         'Name :' ,  prfle.name],[
         'Roll No. :' , prfle.roll_no],[
@@ -147,7 +114,6 @@ def profilepage(request,username) :
         'Address :' , prfle.adress]]
     topass = {
         'details':details,
-        'photo' : photo,
         'coursetitle' : coursetitle,
         'notfs' : notfs,
         'name':prfle.name,
@@ -159,11 +125,6 @@ def profilepage(request,username) :
 def coursedetails(request,coursetitle) :
     username=request.user.username
     prfle = profile.objects.get(username=username)
-    if prfle.photo :
-        photo = prfle.photo
-        photo = photo.url
-    else :
-        photo = '/media/images/empty.png'
     course = course_shedule.objects.get(course_title=coursetitle)
     quiz_obs = quiz_assignment.objects.filter(Q(course = coursetitle) & Q(type = 'quiz'))
     assignment_obs = quiz_assignment.objects.filter(Q(course = coursetitle) & Q(type = 'assignment'))
@@ -175,7 +136,6 @@ def coursedetails(request,coursetitle) :
         assignments.append(assignment)
     topass = {
         'name' : prfle.name,
-        'photo' : photo,
         'course_name' : course.course_name,
         'grade' : prfle.grade,
         'title' :course.course_title,
