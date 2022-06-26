@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVM Dhukra</title>
+    <title>SMS India</title>
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
   
     <style>
@@ -272,6 +272,7 @@
 }
 .student_progile_name{
     margin: auto;
+    text-align: center;
 }
 .logo div img{
     width: 100%;
@@ -311,7 +312,7 @@
         /* flex-grow: 1; */
     }
     .short_name li h1{
-        font-size: 11vw;
+        font-size: 8vw;
         margin: 0;
     }
     .short_name li h1::after{
@@ -323,7 +324,48 @@
         margin: auto;
     }
     .full_name{
-        font-size: 4vw ;
+        font-size: 3.2vw ;
+    }
+}
+/* footer section */
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(211, 210, 210);
+    margin-top: 5%;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+.footer p{
+    margin: 0;
+    padding: 5px 30px 5px 30px;
+}
+.copyright{
+    text-align: center;
+    background: rgb(234, 233, 233);
+}
+.copyright p{
+    margin: 0;
+    padding: 5px;
+}
+.f_location, .f_middle{
+    display: flex;
+    align-items: center;
+}
+.f_middle a img, .f_location a img{
+    width: 50px;
+    margin-right: 20px;
+    border-radius: 20px;
+
+}
+@media(max-width:700px){
+    .footer{
+        flex-direction: column;
+    }
+    .footer div{
+        margin-top: 25px;
     }
 }
 
@@ -423,7 +465,7 @@
                 {% if user.is_authenticated %}
                     <img src="{{user.username|get_photo}}" >
                 {% endif %}
-                <div class="student_progile_name">
+                <div class="student_profile_name">
                 {% block student_name %}{% endblock %}</div>
             </div>
     </section>
@@ -432,6 +474,28 @@
     <!-- Next will be section 3 -->
 {% block body %}This is body {% endblock %}
     
+<section>
+    {% block footer %}
+    <div class="footer">
+        <div class="f_contact">
+            <p>Ph : 123456789</p>
+            <p>email : svmdhukra@gmail.com</p>
+        </div>
+        <div class="f_middle">
+            <p>Visit us on youtube :   </p>
+            <a href="https://www.youtube.com/channel/UCza6hfKyVTyz6pkQvgg952Q" target="_blank"><img src="/static/images/youtube_logo2.png" alt="YouTube"></a>
+            <a href="https://www.youtube.com/channel/UClCNjk78OUZtELgIYTKco-Q" target="_blank"><img src="/static/images/youtube_logo2.png" alt="YouTube"></a>
+        </div>
+        <div class="f_location">
+            <p>Visit us in person : </p>
+            <a href="https://goo.gl/maps/zW8Hun8R3U6rLZKNA" target="_blank"><img src="/static/images/maps.png" alt="Location"></a>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright © 2022 Saraswati Vidya Mandir. All Rights Reserved | Designed & Developed By: Sahil</p>
+    </div>
+    {% endblock %}
+</section>
 </body>
     <!-- javascript code -->
 
