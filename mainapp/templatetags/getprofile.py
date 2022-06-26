@@ -31,4 +31,4 @@ def qlinks():
 
 @register.simple_tag
 def announcements():
-    return ["Summer holidays are till 30th of June. Students have to come to school in 1st of July", "July monthly exam datesheet we be shared soon."]
+    return ["Summer holidays are till 30th of June. Students have to come to school in 1st of July", "July monthly exam datesheet will be shared soon."]
