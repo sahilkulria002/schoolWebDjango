@@ -48,7 +48,7 @@ body{
     margin: auto;
     margin-top: 2%;
     margin-bottom: 200px;
-    min-width: 600px;
+    /* min-width: 600px; */
 }
 .details table,th,td{
     border:1px solid rgb(126, 121, 121);
@@ -85,10 +85,13 @@ body{
 .result h3, .assignments h3, .books h3, .content h3{
     margin: 20px 0 10px 0;
 }
+.ass_table_head{
+    width: 250px;
+}
 @media(max-width:700px){
     .course_heading{
         width: 95%;
-        min-width:550px;
+        /* min-width:550px; */
         margin: auto;
         margin-top: 5%;
     }
@@ -99,10 +102,20 @@ body{
         font-size: 20px;
     }
     .header{
-        min-width: 600px;
+        /* min-width: 600px; */
     }
     .logo{
-        min-width: 600px;
-        margin-left: 20px;
+        /* min-width: 600px;
+        margin-left: 20px; */
+    }
+    .details{
+        width: 99%;
+    }
+    .ass_table_head{
+        width: 130px;
+        font-size: 13px;
+    }
+    .ass_table_data{
+        font-size: 14px;
     }
 }
