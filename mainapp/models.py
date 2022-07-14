@@ -11,6 +11,7 @@ class profile(models.Model):
     fname = models.CharField(max_length=50, default='')
     mname = models.CharField(max_length=50, default='')
     adress = models.CharField(max_length=200, default='')
+    result = ArrayField(ArrayField(models.CharField(max_length=200,default='-'),size=3, blank=True, null=True),size=100,default=list)
     
 
 class notifications(models.Model):
@@ -31,14 +32,13 @@ class quiz_assignment(models.Model) :
     title = models.CharField(max_length=500, default='assignment 1')
     course = models.CharField(max_length=100,default='MTH101')
     syllabus = models.CharField(max_length=100,null=True,blank=True)
-    t_marks = models.IntegerField(default=10)
+    t_marks = models.CharField(max_length=100, default='10')
     last_date = models.DateTimeField(null=True,blank=True)
-    content = models.CharField(max_length=500, default='Name : ')
-    result = ArrayField(ArrayField(models.CharField(max_length=200,default='-'),size=3, blank=True, null=True),size=100,blank=True, null=True)
+    assignment_id = models.CharField(max_length=500,default='01')
+    grade = models.CharField(max_length=50, default='')
 
 class MESSAGE(models.Model) :
     user = models.CharField(max_length=200)
     text = models.CharField(max_length=500)
     tim = models.DateTimeField(default = datetime.now, blank=True)
     rom = models.CharField(max_length=200)
-

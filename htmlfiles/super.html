@@ -1,0 +1,306 @@
+{% extends 'rango/base.html' %}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'super.css' %}">
+
+<div class="dimpliandali">
+  <ul>
+    <li onclick="showres()" style="background-color: white; color:black;" id="m_res">Results</li>
+    <li onclick="shownotf()"  id="m_notf">Notification</li>
+    <li onclick="showquiz()" id="m_quiz">Quiz/Assignment</li>
+    <li onclick="showuser()" id="m_user">Users</li>
+  </ul>
+</div>
+
+
+<form style="display: none;" action="/gen_notification" method="post" id="notification_id" class="detail_form notification_id">
+    {% csrf_token %}
+    <div class="messages">
+      {% for msg in messages %}
+      <p style="color: red">{{msg}}</p>
+      {% endfor %}
+    </div>
+    <label for="grade"> Class Code</label>
+    <input type="text" name="grade_code", placeholder="All if notification is for all the classes" id="n_grade_code">
+    <label for="n_text"> Notification</label>
+    <input type="text" name="n_text" placeholder="Write notification here" id="n_text">
+    <input type="submit" name="" id="" class="s_button">
+</form>
+
+
+<form style="display: none;" action="" method="post" id="q_form" class="detail_form q_form">
+  {% csrf_token %}
+  <label for="type">Quiz or Assignment</label>
+  <input type="text" name="type" id="q_type">
+  <label for="q_title">Title</label>
+  <input type="text" name="q_title" id="q_title">
+  <label for="q_id">Unique ID</label>
+  <input type="text" name="q_id" id="q_id">
+  <label for="q_grade">Class</label>
+  <input type="text" name="q_grade" id="q_grade">
+  <label for="q_course">Course Title</label>
+  <input type="text" name="q_course" id="q_course">
+  <label for="q_marks">Maxmum Marks</label>
+  <input type="text" name="q_marks" id="q_marks">
+  <label for="q_date">Submission Date</label>
+  <input type="date" name="q_date" id="q_date">
+  <label for="q_syllabus">Syllabus</label>
+  <input type="text" name="q_syllabus" id="q_syllabus">
+  <input type="submit" name="" id=""  class="s_button">
+</form>
+
+<!-- starting add functionality -->
+<form  action="/get_q_info" method="post" id="q_result" class="detail_form q_result">
+  {% csrf_token %}
+  <div class="messages">
+    {% for msg in messages %}
+    <p style="color: red">{{msg}}</p>
+    {% endfor %}
+    </div>
+  <label for="q_id_input">Unique id</label>
+  <input type="text" name="q_id_input" id="q_id_input">
+  <input type="submit" name="" id=""  class="add_s">
+
+</form>
+<!-- div for notification -->
+
+<div style="display: none;" class="notf_edit_list" id="notf_table">
+  <h3>Notificaions</h3>
+  <table>
+    <tr>
+      <th>Class</th>
+      <th>Notification</th>
+      <th>id</th>
+      <th>Delete</th>
+    </tr>
+    {% for class, statment,id in n_list %}
+      <tr>
+        <td>{{class}}</td>
+        <td>{{statment}}</td>
+        <td>{{id}}</td>
+        <td onclick="deletenotf('{{id}}')" id="{{id}}" ><a href="/delete/{{id}}" class="delete_box">Delete</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<!-- div for quiz table -->
+
+<div style="display: none;" class="notf_edit_list" id="quiz_table">
+  <h3>Quezes/Assignments</h3>
+  <table>
+    <tr>
+      <th>Class</th>
+      <th>Course</th>
+      <th>Title</th>
+      <th>Unique ID</th>
+      <th>Delete</th>
+    </tr>
+    {% for class, course,title,id,unique_id in q_list %}
+      <tr>
+        <td>{{class}}</td>
+        <td>{{course}}</td>
+        <td>{{title}}</td>
+        <td>{{unique_id}}</td>
+        <td ><a href="/deletequiz/{{id}}" class="delete_box">Delete</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<!-- div for user table -->
+<div style="display: none;" class="notf_edit_list" id="user_table">
+  <h3>Users</h3>
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Name</th>
+      <th>Class</th>
+      <th>Father Name</th>
+      <th>Delete</th>
+    </tr>
+    {% for username, name, class, fname in user_list %}
+    <tr>
+      <td>{{username}}</td>
+      <td>{{name}}</td>
+      <td>{{class}}</td>
+      <td>{{fname}}</td>
+      {% if username != 'supersahil' %}
+      <td ><a href="/deleteuser/{{username}}" class="delete_box">Delete</a></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+
+<script>
+  function shownotf() {
+    var a = document.getElementById('notification_id')
+    var b = document.getElementById('q_form')
+    var c = document.getElementById('q_result')
+    var d = document.getElementById('m_notf')
+    var e = document.getElementById('m_quiz')
+    var f = document.getElementById('m_res')
+    var g = document.getElementById('notf_table')
+    var i = document.getElementById('quiz_table')
+    var j = document.getElementById('user_table')
+    var k = document.getElementById('m_user')
+    k.style.backgroundColor = 'blue';
+    k.style.color = 'white';
+    j.style.display = 'none';
+    i.style.display = 'none';
+    a.style.display = 'flex';
+    b.style.display = 'None';
+    c.style.display = 'None';
+    d.style.color = 'black';
+    d.style.backgroundColor = 'white';
+    e.style.backgroundColor = 'blue';
+    e.style.color = 'white'
+    f.style.backgroundColor = 'blue';
+    f.style.color = 'white';
+    g.style.display = 'flex';
+  }
+  function showquiz() {
+    var a = document.getElementById('notification_id')
+    var b = document.getElementById('q_form')
+    var c = document.getElementById('q_result')
+    var d = document.getElementById('m_notf')
+    var e = document.getElementById('m_quiz')
+    var f = document.getElementById('m_res')
+    var g = document.getElementById('notf_table')
+    var i = document.getElementById('quiz_table')
+    var j = document.getElementById('user_table')
+    var k = document.getElementById('m_user')
+    k.style.backgroundColor = 'blue';
+    k.style.color = 'white';
+    j.style.display = 'none';
+    i.style.display = 'flex'
+    a.style.display = 'None';
+    b.style.display = 'flex';
+    c.style.display = 'None';
+    d.style.color = 'white';
+    d.style.backgroundColor = 'blue';
+    e.style.backgroundColor = 'white';
+    e.style.color = 'black'
+    f.style.backgroundColor = 'blue';
+    f.style.color = 'white';
+    g.style.display = 'none';
+  }
+  function showres() {
+    var a = document.getElementById('notification_id')
+    var b = document.getElementById('q_form')
+    var c = document.getElementById('q_result')
+    var d = document.getElementById('m_notf')
+    var e = document.getElementById('m_quiz')
+    var f = document.getElementById('m_res')
+    var g = document.getElementById('notf_table')
+    var i = document.getElementById('quiz_table')
+    var j = document.getElementById('user_table')
+    var k = document.getElementById('m_user')
+    k.style.backgroundColor = 'blue';
+    k.style.color = 'white';
+    j.style.display = 'none';
+    i.style.display = 'none'
+    a.style.display = 'None';
+    b.style.display = 'None';
+    c.style.display = 'flex ';
+    d.style.color = 'white';
+    d.style.backgroundColor = 'blue'
+    e.style.backgroundColor = 'blue';
+    e.style.color = 'white'
+    f.style.backgroundColor = 'white';
+    f.style.color = 'black';
+    g.style.display = 'none';
+  }
+   function showuser(){
+    var a = document.getElementById('notification_id')
+    var b = document.getElementById('q_form')
+    var c = document.getElementById('q_result')
+    var d = document.getElementById('m_notf')
+    var e = document.getElementById('m_quiz')
+    var f = document.getElementById('m_res')
+    var g = document.getElementById('notf_table')
+    var i = document.getElementById('quiz_table')
+    var j = document.getElementById('user_table')
+    var k = document.getElementById('m_user')
+    k.style.backgroundColor = 'white';
+    k.style.color = 'black';
+    j.style.display = 'flex';
+    i.style.display = 'none'
+    a.style.display = 'None';
+    b.style.display = 'None';
+    c.style.display = 'none ';
+    d.style.color = 'white';
+    d.style.backgroundColor = 'blue'
+    e.style.backgroundColor = 'blue';
+    e.style.color = 'white'
+    f.style.backgroundColor = 'blue';
+    f.style.color = 'white';
+    g.style.display = 'none';
+   }
+
+  //   $(document).on('submit','#notification_id',function(e){
+  //   e.preventDefault();
+
+  //   $.ajax({
+  //     type:'POST',
+  //     url:'/gen_notification',
+  //     data:{
+  //         n_grade:$('#n_grade_code').val(),
+  //         n_text:$('#n_text').val(),
+  //       csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+  //     },
+  //     success: function(data){
+  //        alert(data)
+  //     }
+  //   });
+  //   document.getElementById('n_text').value = ''
+  //   document.getElementById('n_grade_code').value = ''
+  // });
+
+
+
+  // for quiz form
+  $(document).on('submit','#q_form',function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type:'POST',
+      url:'/gen_quiz',
+      data:{
+          type:$('#q_type').val(),
+          title:$('#q_title').val(),
+          q_id:$('#q_id').val(),
+          q_grade:$('#q_grade').val(),
+          course:$('#q_course').val(),
+          MM:$('#q_marks').val(),
+          date:$('#q_date').val(),
+          syllabus:$('#q_syllabus').val(),
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+         alert(data)
+      }
+    });
+    document.getElementById('q_type').value = ''
+    document.getElementById('q_title').value = ''
+    document.getElementById('q_id').value = ''
+    document.getElementById('q_course').value = ''
+    document.getElementById('q_marks').value = ''
+    document.getElementById('q_date').value = ''
+    document.getElementById('q_syllabus').value = ''
+  });
+
+  // function deletenotf(n_id) {
+  //   $.ajax({
+  //     url:'/delete',
+  //     data : {
+  //       n_id: n_id
+  //     }
+  //   })
+  // }
+
+
+</script>
+{% endblock %}

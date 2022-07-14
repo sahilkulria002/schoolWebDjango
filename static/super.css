@@ -1,0 +1,142 @@
+body{
+    background-image:linear-gradient(to right, rgb(85, 242, 103), rgb(174, 241, 162), rgb(96, 237, 112)) ;
+}
+.header{
+    background: rgb(236, 159, 159);
+}
+
+.dimpliandali ul{
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 5px 0 0 5px;
+}
+.dimpliandali ul li{
+    padding: 10px 10px;
+    color: white;
+    font-size: large;
+}
+.dimpliandali ul li:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+.dimpliandali{
+    background-color: blue;
+    width: 80%;
+    left: 10%;
+    position: relative;
+    margin: 20px 0;
+
+}
+
+.detail_form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 20%;
+    padding: 1% 5% 2% 5%;
+    background-image: linear-gradient(rgba(255, 241, 115, 0.7), rgba(145, 255, 49, 0.7));
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 12px black;
+}
+
+
+.detail_form input{
+    line-height: 30px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.detail_form label{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: large;
+}
+
+.s_button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 40px;
+    background-color: rgb(248, 199, 199);
+    width: 50%;
+    position: relative;
+    left: 25%;
+    font-weight: bold;
+    box-shadow: 0px 5px 5px rgb(42, 39, 39);
+}
+.s_button:hover{
+    cursor: pointer;
+    background-color: orange;
+    
+}
+.add_s{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    height: 35px;
+    background-color: rgb(255, 255, 255);
+    width: 40%;
+    position: relative;
+    left: 30%;
+    font-weight: bold;
+    box-shadow: 0px 5px 5px rgb(42, 39, 39);
+    border-radius: 5px;
+    background-color: rgb(248, 199, 199);
+}
+.add_s:hover{
+    cursor: pointer;
+    background-color: orange;
+    
+}
+.s_append{
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgb(143, 185, 185);
+    padding: 0 10px 0 10px;
+    border-radius: 5px; */
+    border-bottom: 3px solid black;
+}
+.s_append_ele{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(143, 185, 185);
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+    margin-bottom: 3px;
+}
+
+.delete_box{
+    /* background-color: red; */
+}
+.notf_edit_list{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 2px black;
+    background-color: rgb(238, 246, 128);
+}
+.notf_edit_list h3{
+    margin: 0;
+}
+.notf_edit_list table td{
+    text-align: center;
+}
+.notf_edit_list table tr{
+    line-height: 38px;
+
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  tr:nth-child(even) {
+    background-color: #d7ebb8;
+  }

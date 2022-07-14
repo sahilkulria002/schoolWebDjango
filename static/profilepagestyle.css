@@ -254,3 +254,25 @@
 .new{
     background: red;
 }
+.result{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 70%;
+    padding: 20px;
+    background-color: rgb(235, 235, 201);
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.result tr:nth-child(even) {
+    background-color: #d7e4c2;
+  }
+.result table{
+    width: 100%;
+}
+.result table td{
+    text-align: center;
+}
+.result h3{
+    margin: 0;
+}

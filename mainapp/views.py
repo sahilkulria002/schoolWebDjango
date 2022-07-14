@@ -1,4 +1,5 @@
 from datetime import datetime
+from re import L
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from mainapp.models import MESSAGE, profile,notifications,course_shedule, quiz_assignment
@@ -81,7 +82,10 @@ def logout(request) :
     return redirect('/')
 
 def profilepage(request,username) :
+    
     username=request.user.username
+    if username == 'supersahil' :
+        return redirect(supersahil)
     prfle = profile.objects.get(username=username)
     grade_query = str(prfle.grade)+','
     notf = notifications.objects.filter(Q(grade_code__contains=grade_query) | Q(grade_code__contains='ll'))
@@ -96,15 +100,18 @@ def profilepage(request,username) :
         course_just_title.append(course.course_title)
     qz_ass_obs = quiz_assignment.objects.filter(course__in = course_just_title)
     quizes_and_assignments = []
-    res = []
     for item in qz_ass_obs:
         if item.last_date > timezone.now() :
             quizes_and_assignments.append([item.title, item.course, item.last_date, True])  #### true that deadine is not over
         else :
             quizes_and_assignments.append([item.title, item.course, item.last_date, False])
-        if item.result :
-            res.append(item.result)
     quizes_and_assignments.reverse()
+    a = prfle.result
+    q_res = []
+    for i in a :
+        quiz = quiz_assignment.objects.get(assignment_id = i[0])
+        q_res.append([quiz.course, quiz.title, i[1], i[2], quiz.t_marks])
+
     details = [['Username :' ,username],[
         'Name :' ,  prfle.name],[
         'Roll No. :' , prfle.roll_no],[
@@ -118,9 +125,25 @@ def profilepage(request,username) :
         'notfs' : notfs,
         'name':prfle.name,
         'quizes' : quizes_and_assignments,
-        'res' : res,
+        'q_res' : q_res,
     }
     return render(request, 'profilepage.html',topass)
+
+
+def supersahil(request) :
+    n_list = []
+    n_obj = notifications.objects.all()
+    for ob in reversed(n_obj) :
+        n_list.append([ob.grade_code, ob.statment,ob.id])
+    q_list = []
+    q_obj = quiz_assignment.objects.all()
+    for ob in reversed(q_obj) :
+        q_list.append([ob.grade, ob.course, ob.title, ob.id, ob.assignment_id])
+    user_list = []
+    user_obj = profile.objects.all()
+    for ob in user_obj :
+        user_list.append([ob.username, ob.name, ob.grade, ob.fname])
+    return render(request, 'super.html', {'n_list' : n_list, 'q_list' : q_list, 'user_list' : user_list})
 
 def coursedetails(request,coursetitle) :
     username=request.user.username
@@ -134,6 +157,12 @@ def coursedetails(request,coursetitle) :
         quizes.append(quiz)
     for assignment in assignment_obs :
         assignments.append(assignment)
+    a = prfle.result
+    q_res = []
+    for i in a :
+        quiz = quiz_assignment.objects.get(assignment_id = i[0])
+        if quiz.course == coursetitle :
+            q_res.append([quiz.course, quiz.title, i[1], i[2], quiz.t_marks])
     topass = {
         'name' : prfle.name,
         'course_name' : course.course_name,
@@ -144,7 +173,8 @@ def coursedetails(request,coursetitle) :
         'time' : course.course_time,
         'content' : course.course_content,
         'quizes' : reversed(quizes),
-        'assignments' : reversed(assignments)
+        'assignments' : reversed(assignments),
+        'q_res' : q_res,
     }
     return render(request, 'coursedetails.html',topass)
 
@@ -167,3 +197,104 @@ def getMessages(request,room) :
     a.reverse()
     return JsonResponse({'messages' : a})
 
+def gen_notification(request) :
+    n_grade = request.POST['grade_code']
+    n_text = request.POST['n_text']
+    if n_grade != '' and n_text != '' :
+        new_notification = notifications.objects.create(grade_code = n_grade, statment = n_text)
+        new_notification.save()
+        msg = messages.info(request, 'Notification saved successfully')
+    else :
+        msg = messages.info(request, 'Invalid Notification')
+
+    return redirect(supersahil)
+
+def gen_quiz(request) :
+    type = request.POST['type']
+    title = request.POST['title']
+    q_id = request.POST['q_id']
+    course = request.POST['course']
+    MM = request.POST['MM']
+    date = request.POST['date']
+    syllabus = request.POST['syllabus']
+    grade = request.POST['q_grade']
+
+    if quiz_assignment.objects.filter(assignment_id=q_id).exists() :
+        return HttpResponse('This id is already teken')
+    elif MM=='' or q_id == '' or date == '' or grade == '':
+        return HttpResponse('Invalid details')
+    else :
+        new_quiz = quiz_assignment.objects.create(type=type, title=title,
+        course=course,syllabus=syllabus,t_marks=MM, last_date=date,assignment_id=q_id, grade = grade)
+        new_quiz.save()
+        return HttpResponse('Quiz/Assignment is created')
+
+def get_q_info(request) :
+    q_id = request.POST['q_id_input']
+    if quiz_assignment.objects.filter(assignment_id = q_id).exists() :
+        quiz = quiz_assignment.objects.get(assignment_id = q_id)
+    else :
+        msg = messages.info(request, 'quiz/assignment with this id does not exist')
+        return redirect(supersahil)
+    q_class = int(quiz.grade)
+
+    q_title = quiz.title
+    q_course = quiz.course
+    class_students = profile.objects.filter(grade = q_class)
+    st_list = []
+    for i in class_students :
+        st_list.append([i.name, i.roll_no, i.username])
+    st_list = sorted(st_list, key= lambda x : x[1])
+    topass = {
+        'title' : q_title,
+        'course' : q_course,
+        'st_list' : st_list,
+        'grade' : q_class,
+        'q_id' : q_id,
+        'MM' : quiz.t_marks
+    }
+    return render(request, 'result.html', topass)
+    
+def save_result(request) :
+    # user = profile.objects.get(username='kim')
+    grade = request.POST['q_grade_output']
+    q_id = request.POST['q_id']
+    class_students = profile.objects.filter(grade = grade)
+    st_list = []
+    for i in class_students :
+        # st_list.append(i.username)
+        user=i.username
+        marks = request.POST[user+'marks']
+        remark = request.POST[user+'remark']
+        res = i.result
+        if not res :
+            res = []
+        a = [q_id, marks, remark]
+        res.append(a)
+        i.result = res
+        i.save()
+
+    topass= {
+        # 'lst' : ls,
+        'grade' : grade,
+        'marks' : marks,
+        'remark' : remark
+    }
+    # return render(request, 'test.html', topass)
+    msg = messages.info(request, 'Result for quiz/assignment with id : ' + q_id + ' is updated successfully')
+    return redirect(supersahil)
+
+def delete(request, n_id) :
+    notf = notifications.objects.get(id = n_id)
+    notf.delete()
+    return redirect(supersahil)
+
+def deletequiz(request, q_id) :
+    quiz = quiz_assignment.objects.get(id = q_id)
+    quiz.delete()
+    return redirect(supersahil)
+
+def deleteuser(request,username) :
+    prfle = profile.objects.get(username=username)
+    prfle.delete()
+    return redirect(supersahil)

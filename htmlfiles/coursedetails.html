@@ -26,15 +26,19 @@
             <h3>Quizes and Assignment Marks :</h3>
             <table>
                 <tr>
-                    <th>--</th>
+                    <th>Course</th>
+                    <th>Title</th>
                     <th>Marks</th>
                     <th>Remarks</th>
                 </tr>
+                {% for t,c,m,r,tm in q_res %}
                 <tr>
-                    <td>nth quiz</td>
-                    <td>NA</td>
-                    <td>NA</td>
+                    <td>{{t}}</td>
+                    <td>{{c}}</td>
+                    <td>{{m}}/{{tm}}</td>
+                    <td>{{r}}</td>
                 </tr>
+                {% endfor %}
             </table>
         </div>
         <div class="assignments">

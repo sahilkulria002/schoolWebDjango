@@ -68,6 +68,30 @@
         </div>
     </div>
 </section>
+
+<!-- section for marks result table  -->
+<section>
+    <div class="result">
+        <h3>Quizes and Assignment Marks :</h3>
+        <table>
+            <tr>
+                <th>Course</th>
+                <th>Title</th>
+                <th>Marks</th>
+                <th>Remarks</th>
+            </tr>
+            {% for t,c,m,r,tm in q_res %}
+            <tr>
+                <td>{{t}}</td>
+                <td>{{c}}</td>
+                <td>{{m}}/{{tm}}</td>
+                <td>{{r}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
+
 <!--section 5 for details table  -->
 
     <table class="details">

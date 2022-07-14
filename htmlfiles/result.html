@@ -1,0 +1,40 @@
+{% extends 'rango/base.html' %}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'result.css' %}">
+
+<div class="dimpliandali">
+    <ul>
+        <a><li style="background-color: white; color:black;">Result</li></a>
+        <a href="/super"><li>Back</li></a>
+    </ul>
+  </div>
+
+<form action="/save_result" method="post" class="result_form">
+    <h3>Quiz/Assignment Title : {{title}}</h3>
+    <h3>Course Title : {{course}}</h3>
+    <h3>Class : {{grade}}</h3>
+    <h3>MM : {{MM}}</h3>
+    <input type="hidden" value="{{grade}}" name="q_grade_output" id="q_grade_output">
+    <input type="hidden" value="{{q_id}}" name="q_id" id="q_id">
+    {% csrf_token %}
+    {% for s_name,r_no, s_username in st_list %}
+    <div class="s_marks">
+        <h3>Name : {{s_name}}</h3>
+        <h3>Roll No : {{r_no}}</h3>
+        <!-- <div class="for_s_name"> -->
+            <label for="{{s_username}}marks">Marks Obtained</label>
+            <input type="text" name="{{s_username}}marks" id="{{s_username}}marks">
+        <!-- </div> -->
+        <!-- <div class="for_r_no"> -->
+            <label for="{{s_username}}remark">Remarks </label>
+            <input type="text" value="Good" name="{{s_username}}remark" id="{{s_username}}remark">
+        <!-- </div> -->
+        <input type="hidden" value="{{s_username}}" name="" id="{{s_username}}">
+    </div>
+    {% endfor %}
+    <input type="submit" class="s_button" name="" id="">
+</form>
+
+
+{% endblock %}
