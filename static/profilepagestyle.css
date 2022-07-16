@@ -1,6 +1,12 @@
 /* body{
-    background-image: linear-gradient(rgba(219, 25, 25, 0.3),rgba(200,200,200,0.3));
+    background-image: linear-gradient(to right, rgba(176, 234, 121, 0.3),rgba(197, 222, 174, 0.3)rgba(176, 234, 121, 0.3));
 } */
+body{
+    background-image:linear-gradient(to right, rgb(85, 242, 103), rgb(174, 241, 162), rgb(96, 237, 112)) ;
+}
+.header{
+    background: rgb(236, 159, 159);
+}
 
 .section3{
     display: flex;
@@ -168,12 +174,12 @@
 .quick_links{
     width: 30%;
 }
-.quick_links h1, .quiz_notf h1{
-    border-bottom: 3px solid rgb(241, 7, 7);
+.quick_links h1, .quiz_notf h1, .result h3{
+    border-bottom: 4px solid rgb(255, 0, 0);
     /* border-radius: 8px; */
     margin : 0;
     padding: 10px 0 10px 0;
-    /* background: rgb(218, 105, 105); */
+    background: rgb(218, 105, 105);
     font-size: 22px;
     text-align: center;
 }
@@ -197,13 +203,16 @@
 .quiz_notf{
     width: 60%;
     position: relative;
-    /* left: 50%;
-    transform: translate(-50%, 0%); */
+    padding:0 20px 20px 20px;
+    background-color: rgb(178, 178, 243);
+    border-radius: 5px;
+    border: 2px solid black;
+    
 }
 .quiz_notf table,td,th{
     margin: 0%;
     margin-top: 2px;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid rgb(255, 0, 0);
     border-collapse: collapse;
     height: 30px;
     padding: 3px 5px 3px 15px;
@@ -228,13 +237,21 @@
 
 /* for table section 5*/
 .details {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    
+
+}
+.details_div{
     width: 85vw;
     margin-left: 5vw;
     margin-top: 5%;
     margin-bottom: 150px;
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-
+    padding: 30px;
+    border: 2px solid black;
+    background-color: rgb(178, 178, 243);
+    border-radius: 8px;
 }
 .details td, .details th {
     border: 1px solid rgb(54, 40, 40);
@@ -255,12 +272,13 @@
     background: red;
 }
 .result{
+    margin-top: 20px;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0%);
     width: 70%;
     padding: 20px;
-    background-color: rgb(235, 235, 201);
+    background-color: rgb(178, 178, 243);
     border-radius: 5px;
     border: 2px solid black;
 }

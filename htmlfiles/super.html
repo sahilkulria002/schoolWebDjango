@@ -34,8 +34,6 @@
   <input type="text" name="type" id="q_type">
   <label for="q_title">Title</label>
   <input type="text" name="q_title" id="q_title">
-  <label for="q_id">Unique ID</label>
-  <input type="text" name="q_id" id="q_id">
   <label for="q_grade">Class</label>
   <input type="text" name="q_grade" id="q_grade">
   <label for="q_course">Course Title</label>
@@ -93,7 +91,7 @@
       <th>Class</th>
       <th>Course</th>
       <th>Title</th>
-      <th>Unique ID</th>
+      <th>ID</th>
       <th>Delete</th>
     </tr>
     {% for class, course,title,id,unique_id in q_list %}
@@ -271,7 +269,6 @@
       data:{
           type:$('#q_type').val(),
           title:$('#q_title').val(),
-          q_id:$('#q_id').val(),
           q_grade:$('#q_grade').val(),
           course:$('#q_course').val(),
           MM:$('#q_marks').val(),

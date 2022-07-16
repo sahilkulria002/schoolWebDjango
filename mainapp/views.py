@@ -109,7 +109,7 @@ def profilepage(request,username) :
     a = prfle.result
     q_res = []
     for i in a :
-        quiz = quiz_assignment.objects.get(assignment_id = i[0])
+        quiz = quiz_assignment.objects.get(id = i[0])
         q_res.append([quiz.course, quiz.title, i[1], i[2], quiz.t_marks])
 
     details = [['Username :' ,username],[
@@ -138,7 +138,7 @@ def supersahil(request) :
     q_list = []
     q_obj = quiz_assignment.objects.all()
     for ob in reversed(q_obj) :
-        q_list.append([ob.grade, ob.course, ob.title, ob.id, ob.assignment_id])
+        q_list.append([ob.grade, ob.course, ob.title, ob.id, ob.id  ])
     user_list = []
     user_obj = profile.objects.all()
     for ob in user_obj :
@@ -212,27 +212,24 @@ def gen_notification(request) :
 def gen_quiz(request) :
     type = request.POST['type']
     title = request.POST['title']
-    q_id = request.POST['q_id']
     course = request.POST['course']
     MM = request.POST['MM']
     date = request.POST['date']
     syllabus = request.POST['syllabus']
     grade = request.POST['q_grade']
 
-    if quiz_assignment.objects.filter(assignment_id=q_id).exists() :
-        return HttpResponse('This id is already teken')
-    elif MM=='' or q_id == '' or date == '' or grade == '':
+    if MM==''  or date == '' or grade == '':
         return HttpResponse('Invalid details')
     else :
         new_quiz = quiz_assignment.objects.create(type=type, title=title,
-        course=course,syllabus=syllabus,t_marks=MM, last_date=date,assignment_id=q_id, grade = grade)
+        course=course,syllabus=syllabus,t_marks=MM, last_date=date, grade = grade)
         new_quiz.save()
         return HttpResponse('Quiz/Assignment is created')
 
 def get_q_info(request) :
     q_id = request.POST['q_id_input']
-    if quiz_assignment.objects.filter(assignment_id = q_id).exists() :
-        quiz = quiz_assignment.objects.get(assignment_id = q_id)
+    if quiz_assignment.objects.filter(id = q_id).exists() :
+        quiz = quiz_assignment.objects.get(id = q_id)
     else :
         msg = messages.info(request, 'quiz/assignment with this id does not exist')
         return redirect(supersahil)

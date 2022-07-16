@@ -34,7 +34,6 @@ class quiz_assignment(models.Model) :
     syllabus = models.CharField(max_length=100,null=True,blank=True)
     t_marks = models.CharField(max_length=100, default='10')
     last_date = models.DateTimeField(null=True,blank=True)
-    assignment_id = models.CharField(max_length=500,default='01')
     grade = models.CharField(max_length=50, default='')
 
 class MESSAGE(models.Model) :
