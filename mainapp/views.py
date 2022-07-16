@@ -160,7 +160,7 @@ def coursedetails(request,coursetitle) :
     a = prfle.result
     q_res = []
     for i in a :
-        quiz = quiz_assignment.objects.get(assignment_id = i[0])
+        quiz = quiz_assignment.objects.get(id = i[0])
         if quiz.course == coursetitle :
             q_res.append([quiz.course, quiz.title, i[1], i[2], quiz.t_marks])
     topass = {
