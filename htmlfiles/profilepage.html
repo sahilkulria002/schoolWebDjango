@@ -70,13 +70,13 @@
 </section>
 
 <!-- section for marks result table  -->
-<section>
+<section class="result_section">
     <div class="result">
         <h3>Quizes and Assignment Marks :</h3>
         <table>
             <tr>
                 <th>Course</th>
-                <th>Title</th>
+                <th class="quiz_title">Title</th>
                 <th>Marks</th>
                 <th>Remarks</th>
             </tr>
@@ -97,7 +97,7 @@
     <table class="details">
         {% for a,b in details %}
         <tr>
-            <th>{{a}}</th>
+            <th class="table_head_c">{{a}}</th>
             <td>{{b}}</td>
         </tr>
         {% endfor %}

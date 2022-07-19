@@ -383,7 +383,6 @@
         <div class="right_links">
             <ul>
                 {% if user.is_authenticated %}
-                <li class="chat_button" onclick="show_chat(1)"><a>Hangout</a></li>
                 <li><a href="/user=z/?username={{user.username}}">Welcome {{user.username}}</a></li>
                 <li><a href="/logout">Logout</a></li>
                 {% else %}
@@ -408,7 +407,6 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/inh1">Contact</a></li>
                 {% if user.is_authenticated %}
-                <li class="chat_button" onclick="show_chat(1), hide_menu()"><a>Hangout</a></li>
                 <li><a href="/user=z/?username={{user.username}}">Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
                 {% else %}
@@ -420,36 +418,6 @@
     </section>
 <!-- chat Window -->
 <!-- this also contains javascript code in the end -->
-{% if user.is_authenticated %}
-<div class="chat_win" id="chat_win_id">
-    <div class="chat_win_menu">
-        <ul>
-            <li class="chat_back" onclick="show_chat(1)" ><a>Class</a></li>
-            <li class="chat_back" onclick="show_chat(0)"><a>School</a></li>
-            <li class="chat_back" onclick="hide_chat()"><a>Back</a></li>
-        </ul>
-        <h3 id="chat_group">Class {{user.username|get_grade}}</h3>
-    </div>
-    <div class='display_calss' id="display" onclick="show_detail()">
-        <!-- <div class="container_darker" >
-            <div class="msg_details" id="msg_detail_id">
-                <b class="time-left">Sahil  </b>
-                <span class="time-left">20th, April 2021</span></div>
-            <p >Hello Everyone, How Are You  Doing?</p>
-        </div> -->
-    </div>
-    <div class="msg_typing_box">
-        <form class="msg_typing_box_form" id="post-form">
-            {% csrf_token %}
-            <input type="hidden" name="username" id="username" value="{{user.username}}"/>
-            <input type="hidden" name="room_id" id="room_id" value="{{user.username|get_grade}}"/>
-            <div class="msg_boxandbutton">
-            <input type="text" name="message" id="message" width="100px" class="msg_box"/>
-            <input type="submit" value="send" class="send_msg"></div>
-        </form>
-    </div>
-</div>
-{% endif %}
 <!-- Section 2 -->
     <section class="logo">
         <div class="school_logo">
@@ -509,81 +477,7 @@
         menulinks.style.left = '0px'
     }
 // for chat window up and down
-    var chatgrp = 0;
-    var chat_win  = document.getElementById('chat_win_id')
-    function show_chat(cls){
-        chat_win.style.top = '12vh';
-        if (cls == 1){
-            if (chatgrp != 0){
-                clearInterval(rep)
-            }
-            document.getElementById('room_id').value = '{{ user.username|get_grade}}'
-            document.getElementById('chat_group').textContent = 'Class {{user.username|get_grade}}'
-            chatgrp = 1;
-            realtime("{{user.username|get_grade}}")
-        }else {
-            if (chatgrp != 0){
-                clearInterval(rep)
-            }
-            document.getElementById('room_id').value = 'school'
-            document.getElementById('chat_group').textContent = 'School'
-            chatgrp = 1;
-            realtime("school")
-        }
-        
-    }
-    function hide_chat(){
-        chat_win.style.top = '100vh'
-        chatgrp = 0;
-        clearInterval(rep)
-    }
-
-// for message in chat window to send
-
-  $(document).on('submit','#post-form',function(e){
-    e.preventDefault();
-
-    $.ajax({
-      type:'POST',
-      url:'/send',
-      data:{
-          username:$('#username').val(),
-          room_id:$('#room_id').val(),
-          message:$('#message').val(),
-        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-      },
-      success: function(data){
-        //  alert(data)
-      }
-    });
-    document.getElementById('message').value = ''
-  });
-
-///////// realtime message showing in chat window
-function realtime(chat){
-$(document).ready(function(){
-rep = setInterval(function(){
-    ab =$.ajax({
-        type: 'GET',
-        
-        url : "/getMessages/"+chat+"/",
-        success: function(response){
-            console.log(response);
-            $("#display").empty();
-            for (var key in response.messages)
-            {
-                var temp="<div class='container_darker'  onclick=show_detail()><div class='msg_details' id='msg_detail_id'><b class='time-left'>"+response.messages[key].user+"</b><span class='time-left'>"+response.messages[key].tim+"</span></div><p>"+response.messages[key].text+"</p></div>";
-                $("#display").append(temp);
-            }
-        },
-        error: function(response){
-            alert('An error occured')
-        }
-    });
-},1000);
-})}
-
-
+    
 // // for showing details of a message
 // var x =document.getElementsByClassName('msg_details')
 // function show_detail(){

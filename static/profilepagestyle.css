@@ -148,7 +148,7 @@ body{
     }
     
     .notification{
-        width: 90%;
+        width: 100%;
         position: relative;
         left: 50%;
         transform: translate(-50%,0%);
@@ -216,6 +216,7 @@ body{
     border-collapse: collapse;
     height: 30px;
     padding: 3px 5px 3px 15px;
+    text-align: center;
 }
 .quiz_notf table{
     left: 50%;
@@ -227,12 +228,19 @@ body{
     .section4{
         flex-direction: column;
     }
-    .quiz_notf{
+    .quick_links h1, .quiz_notf h1, .result h3{
+        font-size: 16px;
+    }
+    .quiz_notf {
         width: 100%;
+        left: -1%;
+        font-size: 13px;
+        padding: 0 5px 5px 5px;
     }
     .quick_links{
         width: 100%;
     }
+    
 }
 
 /* for table section 5*/
@@ -258,15 +266,20 @@ body{
     font-size: 14px;
     padding: 8px;
 }
+.table_head_c{
+    width: 50%;
+}
 .details tr:nth-child(even){background-color: #f2f2f2;}
 
 .details tr:hover {background-color: #ddd;}
 
 @media(max-width=700px){
-    /* .details {
-        width: 80vw;
+    .details {
+        width: 90vw;
         margin-left: 2vh;
-    } */
+        margin: 0;
+    }
+    
 }
 .new{
     background: red;
@@ -277,7 +290,7 @@ body{
     left: 50%;
     transform: translate(-50%, 0%);
     width: 70%;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     background-color: rgb(178, 178, 243);
     border-radius: 5px;
     border: 2px solid black;
@@ -293,4 +306,29 @@ body{
 }
 .result h3{
     margin: 0;
+    width: 100%;
+}
+@media(max-width:700px){
+    .result{
+        width: 90%;
+        /* left: 0%; */
+        padding: 0 5px 5px 5px;
+        font-size: 13px;
+    }
+    .details_div{
+        /* background-color: red; */
+        margin-left: 0;
+        width: 96%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    .table_head_c{
+        width: 50%;
+    }
+    .quiz_title{
+        width: 50%;
+    }
+    .quiz_notf table,td,th{
+        padding: 3px 5px 3px 5px;
+    }
 }
